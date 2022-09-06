@@ -14,12 +14,25 @@ export class HeroesComponent implements OnInit {
     name: 'windstorm'
   }
   heroes: Hero[] = []
+  newName = ''
   constructor(private heroService: HeroService, private messageService: MessageService) { }
   getHeroes(): void{
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes)
   }
-  
+  addHero() : void {
+    console.log(this.newName)
+    this.heroService.addHero(this.newName)
+      .subscribe(hero => {
+        this.getHeroes()
+      })
+  }
+  deleteById(id: number) : void {
+    this.heroService.deleteHeroById(id)
+      .subscribe(_ => {
+        this.getHeroes()
+      })
+  }
   ngOnInit(): void {
     this.getHeroes()
   }

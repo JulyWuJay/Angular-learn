@@ -4,5 +4,12 @@
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span>{{hero.name}}
     </a>
+    <button (click)="deleteById(hero.id)">delete</button>
   </li>
 </ul>
+<div>
+  <label for="new-hero">hero: name</label>
+  <input type="text" id="new-hero" [(ngModel)]="newName">
+  <button (click)="addHero()">addHero</button>
+</div>
+<app-hero-search></app-hero-search>
